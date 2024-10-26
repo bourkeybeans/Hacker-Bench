@@ -1,0 +1,29 @@
+{% extends "layout.html" %}
+{% block title %}
+    Registration
+{% endblock %}
+{% block main %}
+<div class="container">
+    <h1 class="mb-4">Register Now!</h1>
+    <form method="POST" action="/register">
+        <div class="mb-3">
+            <label for="username" class="form-label">Username</label>
+            <input type="text" class="form-control" id="username" name="username" required>
+        </div>
+        <div class="mb-3">
+            <label for="password" class="form-label">Password</label>
+            <input type="password" class="form-control" id="password" name="password" required>
+        </div>
+        <div class="mb-3">
+            <label for="password" class="form-label">Confirm Password</label>
+            <input type="password" class="form-control" id="password" name="confirmed" required>
+        </div>
+        <button type="submit" class="btn btn-primary">Register</button>
+    </form>
+    <p class="mt-3">
+        Have an account? <a href="/login">Login here!</a>
+    </p>
+</div>
+
+{% endblock %}
+

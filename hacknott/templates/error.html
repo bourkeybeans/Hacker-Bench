@@ -1,0 +1,32 @@
+{% extends "layout.html" %}
+{% block title %}
+Error!
+{% endblock %}
+{% block main %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Error Page</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <div class="error-page"> <!-- Added class to scope styles -->
+        <div class="error-container">
+            <h1>Oops!</h1>
+            <h2>Something went wrong.</h2>
+            <p>{{ message }}</p>
+            <p>Please try the following:</p>
+            <ul>
+                <li>Check the URL for mistakes.</li>
+                <li>Go back to the <a href="/">homepage</a>.</li>
+            </ul>
+        </div>
+    </div>
+</body>
+</html>
+
+
+{% endblock %}

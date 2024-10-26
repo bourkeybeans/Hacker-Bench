@@ -1,0 +1,38 @@
+{% extends "layout.html" %}
+{% block title %}
+Highscores!
+{% endblock %}
+{% block main %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profile - High Scores</title>
+    <link rel="stylesheet" href="styles.css"> <!-- Link to a CSS file for styling -->
+    
+</head>
+<body>
+    <div class="profile-container">
+        <h1>Highscores - {{ username }}</h1>
+        <table class="table table-striped table-hover">
+            <thead>
+                <tr>
+                    <th>Memory Leaderboard:</th>
+                   <th>Typing Leaderboard:</th>
+                   <th>3D Orientation Leaderboard:</th>
+                   <th>Aiming Leaderboard :</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>{{ ("%.2f" % highscores.memory) if highscores.memory is not none else "N/A" }}</td>
+                    <td>{{ ("%.2f" % highscores.typing) if highscores.typing is not none else "N/A" }}</td>
+                    <td>{{ ("%.2f" % highscores.threedee) if highscores.threedee is not none else "N/A" }}</td>
+                    <td>{{ ("%.2f" % highscores.aim) if highscores.aim is not none else "N/A" }}</td>
+                </tr>
+                
+            <tfoot>
+        
+            </tfoot>
+{% endblock %}

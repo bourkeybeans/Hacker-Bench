@@ -1,0 +1,148 @@
+{% extends "layout.html" %}
+{% block title %}
+Leaderboard!
+{% endblock %}
+{% block main %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>High Scores Dropdowns</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+        .container {
+            margin: 20px;
+        }
+        .dropdown {
+            display: none; /* Hide the dropdown initially */
+            margin-top: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            background-color: #fff;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+        }
+        .dropdown table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        .dropdown th, .dropdown td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+        .dropdown th {
+            background-color: #f2f2f2;
+        }
+        button {
+            padding: 10px 15px;
+            font-size: 16px;
+            cursor: pointer;
+            margin: 5px; /* Add some margin between buttons */
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <button class="toggleButton" data-target="highScoresDropdown1">Typing HighScores</button>
+    <div id="highScoresDropdown1" class="dropdown">
+        <table>
+            <thead>
+                
+                <tr>
+                    <th>Username</th>
+                    <th>High Score</th>
+                </tr>
+
+            </thead>
+            <tbody>
+                {% for score in type %}
+                <tr>
+                    <td>{{ score.username }}</td>
+                    <td>{{ score.score }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+
+    <button class="toggleButton" data-target="highScoresDropdown2">Memory Highscores</button>
+    <div id="highScoresDropdown2" class="dropdown">
+        <table>
+            <thead>
+                <tr>
+                    <th>Username</th>
+                    <th>High Score</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for score in memory %}
+                <tr>
+                    <td>{{ score.username }}</td>
+                    <td>{{ score.score }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+
+    <button class="toggleButton" data-target="highScoresDropdown3">3D Orientation Highscores</button>
+    <div id="highScoresDropdown3" class="dropdown">
+        <table>
+            <thead>
+                <tr>
+                    <th>Username</th>
+                    <th>High Score</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tbody>
+                    {% for score in threedee %}
+                    <tr>
+                        <td>{{ score.username }}</td>
+                        <td>{{ score.score }}</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+        </table>
+    </div>
+
+    <button class="toggleButton" data-target="highScoresDropdown4">Aiming Highscores</button>
+    <div id="highScoresDropdown4" class="dropdown">
+        <table>
+            <thead>
+                <tr>
+                    <th>Username</th>
+                    <th>High Score</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for score in aim %}
+                <tr>
+                    <td>{{ score.username }}</td>
+                    <td>{{ score.score }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<script>
+    // Add event listeners to all buttons
+    const buttons = document.querySelectorAll(".toggleButton");
+    buttons.forEach(button => {
+        button.addEventListener("click", function() {
+            const targetId = this.getAttribute("data-target");
+            const dropdown = document.getElementById(targetId);
+            dropdown.style.display = dropdown.style.display === "none" || dropdown.style.display === "" ? "block" : "none";
+        });
+    });
+</script>
+
+</body>
+</html>
+{% endblock %}
