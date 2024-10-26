@@ -1,18 +1,8 @@
 import pygame
 import random
 
-from Target import Target
-
-pygame.init()
-
-# Colours
-ORANGE = (255, 134, 0)
-PURPLE = (121, 48, 136)
-DARK_PURPLE = (80, 32, 90)
-
-# Fonts
-TITLE_FONT = pygame.font.SysFont('applesdgothicneo', 60, True)
-SUBTITLE_FONT = pygame.font.SysFont('applesdgothicneo', 40, True)
+from config import *
+from AimTrainer.Target import Target
 
 
 class AimTrainer():
@@ -114,12 +104,10 @@ class AimTrainer():
 
 
 while __name__ == "__main__":
-    FPS = 120
-    WIDTH, HEIGHT = 1000, 800
-    pygame.display.set_caption("AimTrainer")
-    WIN = pygame.display.set_mode((WIDTH, HEIGHT))
+    pygame.display.set_caption(APP_NAME)
+    WIN = pygame.display.set_mode((WIN_WIDTH, WIN_HEIGHT))
 
-    currentApp = AimTrainer(WIN, 20, WIDTH, HEIGHT)
+    currentApp = AimTrainer(WIN, 20, WIN_WIDTH, WIN_HEIGHT)
 
     while currentApp.running:
         currentApp.app_tick()
