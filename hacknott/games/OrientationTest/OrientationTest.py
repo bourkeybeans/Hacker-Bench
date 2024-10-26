@@ -3,8 +3,8 @@ import pygame
 import random
 from math import *
 
-from config import *
-from OrientationTest.Model import Model
+from HackNotts24.hacknott.games.AimTrainer.Assets.config import *
+from HackNotts24.hacknott.games.OrientationTest.Assets.Model import Model
 
 
 # Initialises the projection matrix

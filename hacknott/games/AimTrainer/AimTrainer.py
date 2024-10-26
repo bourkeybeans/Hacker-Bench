@@ -1,17 +1,24 @@
 import pygame
 import random
 
-from config import *
-from AimTrainer.Target import Target
+from Assets.config import *
+from Assets.Target import Target
+import sys
 
+if len(sys.argv) < 2:
+    print("No session_id provided.")
+    sys.exit(1)
+
+session_id = sys.argv[1] 
 
 class AimTrainer():
-    def __init__(self, surface:pygame.surface, startTargets:int=20, WIDTH:int=1000, HEIGHT:int=800):
+    def __init__(self, surface:pygame.surface, sessionID:str, startTargets:int=20, WIDTH:int=1000, HEIGHT:int=800):
         # Initialise Default Perimeters for the PyGame Window
         self.WIN = surface
         self.running = True
         self.__WIDTH = WIDTH
         self.__HEIGHT = HEIGHT
+        self.sessionID = sessionID
 
         # Initialise Starting Text
         self.__startingTitle = TITLE_FONT.render('Aim Trainer', True, PURPLE)
@@ -104,10 +111,16 @@ class AimTrainer():
 
 
 while __name__ == "__main__":
+    if len(sys.argv) < 2:
+        print("No session_id provided.")
+        sys.exit(1)
+
+    sessionID = sys.argv[1] 
+
     pygame.display.set_caption(APP_NAME)
     WIN = pygame.display.set_mode((WIN_WIDTH, WIN_HEIGHT))
 
-    currentApp = AimTrainer(WIN, 20, WIN_WIDTH, WIN_HEIGHT)
+    currentApp = AimTrainer(WIN, sessionID, 20,  WIN_WIDTH, WIN_HEIGHT)
 
     while currentApp.running:
         currentApp.app_tick()

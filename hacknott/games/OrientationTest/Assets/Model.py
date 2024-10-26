@@ -23,7 +23,7 @@ class Model:
         self.edges = set()
 
         try:
-            with open(f'OrientationTest/Assets/{fileName}', 'r') as file:
+            with open(f'Assets/{fileName}', 'r') as file:
                 for line in file:
                     if len(objectNames) > 0:
                         if line.startswith('o ') and (line.split()[1] not in objectNames):

@@ -15,4 +15,4 @@ SUBTITLE_FONT = pygame.font.SysFont('applesdgothicneo', 40, True)
 FPS = 120
 WIN_WIDTH = 1000
 WIN_HEIGHT = 800
-APP_NAME = "HackBench"
+APP_NAME = "Orientation Test"

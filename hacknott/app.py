@@ -130,7 +130,7 @@ def test():
 
 
 
-@app.route("/play", methods = ["POST"])
+@app.route("/type", methods = ["POST"])
 @login_required
 def type():
     run_game('type.py', session['user_id'])
@@ -157,3 +157,16 @@ def leaderboard():
     type = db.execute("SELECT score, username FROM type ORDER BY score DESC")
 
     return render_template("leaderboard.html",memory=memory, aim=aim, threedee=threedee, type=type)
+
+
+@app.route("/threedee", methods = ["POST"])
+@login_required
+def three():
+    run_game('.py', session['user_id'])
+    return redirect("/")
+
+@app.route("/aim", methods = ["POST"])
+@login_required
+def aim():
+    run_game('AimTrainer.py', session['user_id'])
+    return redirect("/")
