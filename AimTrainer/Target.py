@@ -9,9 +9,9 @@ class Target:
         # Initialises image and location
         self.coordinates = coordinates
         if scale:
-            self.image = pygame.transform.scale2x(pygame.image.load('Assets/target.png'))
+            self.image = pygame.transform.scale2x(pygame.image.load('AimTrainer/Assets/target.png'))
         else:
-            self.image = pygame.image.load('Assets/target.png')
+            self.image = pygame.image.load('AimTrainer/Assets/target.png')
         self.targetRect = self.image.get_rect(center=self.coordinates)
         
         # Initialises local variables
