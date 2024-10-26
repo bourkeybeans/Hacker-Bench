@@ -82,11 +82,14 @@ def login():
         id=id[0]
         id = id['id']
         session["user_id"] = id
+        username = db.execute("SELECT username FROM users WHERE id = ?", session["user_id"])
+        username = username[0]
+        username = username['username']
 
         check = db.execute("SELECT * FROM profile WHERE user_id = ?", id)
         if not check:
             skill = 'unkown'
-            db.execute("INSERT INTO highscores (user_id, memory, typing, threedee, aim) VALUES (?, ?, ?, ?, ?)", session["user_id"], 0, 0, 0, 0)
+            db.execute("INSERT INTO highscores (user_id, memory, typing, threedee, aim, username) VALUES (?, ?, ?, ?, ?, ?)", session["user_id"], 0, 0, 0, 0, username)
             db.execute("INSERT INTO profile (user_id, teststaken, bestskill) VALUES (?, ?, ?)",session["user_id"], 0, skill)
 
         # Redirect user to home page
@@ -139,20 +142,26 @@ def type():
 @app.route("/highscores", methods =["GET","POST"])
 @login_required
 def high():
+    is_friend = True
     username = db.execute("SELECT username FROM users WHERE id = ?", session["user_id"])
     username = username[0]
     username = username['username']
    
     highscores = db.execute("SELECT * FROM highscores WHERE user_id = ?", session["user_id"])
     highscores = highscores[0]
-    return render_template("highscores.html",highscores=highscores, username=username)
+
+    friends = db.execute("SELECT username FROM users WHERE id IN (SELECT friend_id FROM friends WHERE user_id = ?) ", session["user_id"])
+    if not friends:
+        is_friend = False
+    friends_profiles = db.execute("SELECT * FROM highscores WHERE user_id IN (SELECT friend_id FROM friends WHERE user_id = ?) ", session["user_id"])
+    return render_template("highscores.html",highscores=highscores, username=username,friends=friends, is_friend=is_friend, friends_profiles=friends_profiles)
 
 
 @app.route("/leaderboard", methods=["GET", "POST"])
 @login_required
 def leaderboard():
     memory = db.execute("SELECT score, username FROM memory ORDER BY score DESC")
-    aim = db.execute("SELECT score, username FROM aim ORDER BY score DESC")
+    aim = db.execute("SELECT score, username FROM aim ORDER BY score ASC")
     threedee = db.execute("SELECT score, username FROM threedee ORDER BY score DESC")
     type = db.execute("SELECT score, username FROM type ORDER BY score DESC")
 
@@ -162,11 +171,50 @@ def leaderboard():
 @app.route("/threedee", methods = ["POST"])
 @login_required
 def three():
-    run_game('.py', session['user_id'])
-    return redirect("/")
+    run_game('OrientationTest/OrientationTest.py', session['user_id'])
+    return redirect("/test")
 
 @app.route("/aim", methods = ["POST"])
 @login_required
 def aim():
-    run_game('AimTrainer.py', session['user_id'])
-    return redirect("/")
+    run_game('AimTrainer/AimTrainer.py', session['user_id'])
+    return redirect("/test")
+
+
+@app.route("/addfriend", methods=["GET","POST"])
+@login_required
+def addfriend():
+
+    friends_name = request.form.get('friendname')
+    friend_id = db.execute("SELECT id FROM users WHERE username = ?", friends_name)
+
+    if not friend_id:
+        return render_template("error.html",message="Username is Invalid")
+    friend_id = friend_id[0]
+    friend_id = friend_id['id']
+    db.execute("INSERT INTO friends (user_id, friend_id) VALUES (?, ?)", session["user_id"], friend_id)
+    db.execute("INSERT INTO friends (user_id, friend_id) VALUES (?, ?)", friend_id, session["user_id"])
+
+
+    
+        
+    return redirect("/highscores")
+
+@app.route("/viewfriends", methods=["GET","POST"])
+@login_required
+def viewfriends():
+    user_id = request.form.get("friends_id")
+   
+
+    friendprofile = db.execute("SELECT * FROM highscores WHERE user_id = ?", user_id)
+    if friendprofile:
+        friendprofile = friendprofile[0]
+    
+    return render_template("friendsstats.html", friendprofile=friendprofile)
+
+@app.route("/removefriend", methods=["POST"])
+def removefriend():
+    friendid = request.form.get('delete_id')
+
+    db.execute("DELETE FROM friends WHERE friend_id = ?", friendid)
+    return redirect("/highscores")

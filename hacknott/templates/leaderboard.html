@@ -51,18 +51,16 @@ Leaderboard!
     <div id="highScoresDropdown1" class="dropdown">
         <table>
             <thead>
-                
                 <tr>
                     <th>Username</th>
                     <th>High Score</th>
                 </tr>
-
             </thead>
             <tbody>
                 {% for score in type %}
                 <tr>
                     <td>{{ score.username }}</td>
-                    <td>{{ score.score }}</td>
+                    <td>{{ "{:.2f}".format(score.score) }}</td>  <!-- Format score to 2 decimal places -->
                 </tr>
                 {% endfor %}
             </tbody>
@@ -82,7 +80,7 @@ Leaderboard!
                 {% for score in memory %}
                 <tr>
                     <td>{{ score.username }}</td>
-                    <td>{{ score.score }}</td>
+                    <td>{{ "{:.2f}".format(score.score) }}</td>  <!-- Format score to 2 decimal places -->
                 </tr>
                 {% endfor %}
             </tbody>
@@ -99,14 +97,13 @@ Leaderboard!
                 </tr>
             </thead>
             <tbody>
-                <tbody>
-                    {% for score in threedee %}
-                    <tr>
-                        <td>{{ score.username }}</td>
-                        <td>{{ score.score }}</td>
-                    </tr>
-                    {% endfor %}
-                </tbody>
+                {% for score in threedee %}
+                <tr>
+                    <td>{{ score.username }}</td>
+                    <td>{{ "{:.2f}".format(score.score) }}</td>  <!-- Format score to 2 decimal places -->
+                </tr>
+                {% endfor %}
+            </tbody>
         </table>
     </div>
 
@@ -123,7 +120,7 @@ Leaderboard!
                 {% for score in aim %}
                 <tr>
                     <td>{{ score.username }}</td>
-                    <td>{{ score.score }}</td>
+                    <td>{{ "{:.2f}".format(score.score) }}</td>  <!-- Format score to 2 decimal places -->
                 </tr>
                 {% endfor %}
             </tbody>

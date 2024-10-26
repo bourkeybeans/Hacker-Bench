@@ -1,0 +1,30 @@
+{% extends "layout.html" %}
+{% block title %}
+Highscores!
+{% endblock %}
+{% block main %}
+<header style="font-size :x-large"> Your Friend! : {{ friendprofile.username }}</header>
+<br>
+<table class="table table-striped table-hover">
+    <thead>
+        <tr>
+            <th>Memory Highscore</th>
+            <th>Typing Highscore</th>
+            <th>3D Orientation Highscore</th>
+            <th>Aim Highscore</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>{{ ("%.2f" % friendprofile.memory) if friendprofile.memory is not none else "N/A" }}</td>
+                    <td>{{ ("%.2f" % friendprofile.typing) if friendprofile.typing is not none else "N/A" }}</td>
+                    <td>{{ ("%.2f" % friendprofile.threedee) if friendprofile.threedee is not none else "N/A" }}</td>
+                    <td>{{ ("%.2f" % friendprofile.aim) if friendprofile.aim is not none else "N/A" }}</td>
+        </tr>
+        
+    <tfoot>
+
+    </tfoot>
+</table>
+
+{% endblock %}
