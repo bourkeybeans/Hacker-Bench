@@ -1,0 +1,37 @@
+{% extends "layout.html" %}
+{% block title %}
+Test!
+{% endblock %}
+
+{% block main %}
+
+<body>
+    <div id="container"> <!-- Specific class added -->
+        <div class="game-selection-container">
+        <h1>Welcome to the Tests!</h1>
+        <p></p>
+        
+                <form action="/type" method="POST">
+                    <button type="submit" class="game-button">Typing Test!</button>
+            </form>
+            <p></p>
+                    <form action="/threedee" method="POST">
+                        <button type="submit" class="game-button">3D Orientation Exam</button>
+                        </form>
+                        <p></p>
+                        <form action="/aim" method="POST">
+                            <button type="submit" class="game-button">Aim Test!</button>
+                            </form>
+                            <p></p>
+                            <form action="/memory" method="POST">
+                                <button type="submit" class="game-button">Memory Sequence Exam</button>
+                            </form>
+                            <p></p>
+                            <form action="/decision" method="POST">
+                                <button type="submit" class="game-button">Decision Making Test!</button>
+                                </form>
+                                
+    </div>
+    </div>
+</body>
+{% endblock %}

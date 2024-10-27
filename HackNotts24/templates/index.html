@@ -1,0 +1,146 @@
+{% extends "layout.html" %}
+{% block title %}
+    Homepage
+{% endblock %}
+{% block main %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hacker Bench</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<style>
+    * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #f4f4f4;
+    color: #333;
+    line-height: 1.6;
+}
+
+.homepage-container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+    background: white;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+header {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+h1 {
+    font-size: 2.5rem;
+    color: #000000;
+}
+
+h2 {
+    font-size: 2rem;
+    margin-bottom: 10px;
+}
+
+h3 {
+    font-size: 1.5rem;
+    color: #000000;
+}
+
+.features {
+    margin-bottom: 30px;
+}
+
+.feature-list {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+
+.feature {
+    background: #e9ecef;
+    border-radius: 5px;
+    padding: 15px;
+    margin: 10px;
+    flex: 1 1 calc(30% - 20px);
+    box-shadow: 0 1px 5px rgba(0, 0, 0, 0.1);
+}
+
+.cta {
+    text-align: center;
+    margin: 30px 0;
+}
+
+.cta-button {
+    display: inline-block;
+    padding: 10px 20px;
+    margin: 5px;
+    background-color: #e70707d0;
+    color: white;
+    text-decoration: none;
+    border-radius: 5px;
+    transition: background-color 0.3s;
+}
+
+.cta-button:hover {
+    background-color: #d20909;
+}
+
+footer {
+    text-align: center;
+    margin-top: 20px;
+    font-size: 0.9rem;
+    color: #666;
+}
+</style>
+<body>
+    <div class="homepage-container">
+        <header>
+            <h1>Welcome to Hacker Bench</h1>
+            <p>Your ultimate human benchmarking platform.</p>
+        </header>
+        <main>
+            <section class="features">
+                <h2>Features</h2>
+                <div class="feature-list">
+                    <div class="feature">
+                        <h3>Typing Speed Test</h3>
+                        <p>Challenge yourself and improve your typing speed.</p>
+                    </div>
+                    <div class="feature">
+                        <h3>Memory Challenges</h3>
+                        <p>Test and enhance your memory with engaging games.</p>
+                    </div>
+                    <div class="feature">
+                        <h3>3D Orientation and Spatial Awareness Test</h3>
+                        <p>Measure and improve your memory, speed and spatial awareness.</p>
+                    </div>
+                </div>
+            </section>
+            <section class="cta">
+                <h2>Get Started</h2>
+                <p>Join our community and start benchmarking your skills today!</p>
+                {% if not session["user_id"] %}
+                <a href="/register" class="cta-button">Sign Up</a>
+                <a href="/login" class="cta-button">Log In</a>
+                {% endif %}
+            </section>
+        </main>
+        <footer>
+            <p>&copy; 2024 Hacker Bench. All Rights Reserved.</p>
+        </footer>
+    </div>
+</body>
+</html>
+
+
+
+{% endblock %}
