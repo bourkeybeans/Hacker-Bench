@@ -1,5 +1,5 @@
 # HackNotts24
-Repo for our HackNotts24 Project
+Psychometric Practice Application
 
 # Our Project
 The project is called '**HackerBench**' and is a psychometric assessment of skills. It tests typing, memory, decision making, spatial reasoning, reaction time and aim. The project can be used for assessing candiates, or for fun minigames to pass time. 
